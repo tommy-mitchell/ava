@@ -31,6 +31,7 @@ module.exports = {
 		'unicorn/prefer-event-target': 'off',
 		'unicorn/prevent-abbreviations': 'off',
 		'promise/prefer-await-to-then': 'off',
+		// TODO: waiting on xojs/xo#761
 		'n/no-unsupported-features/node-builtins': ['error', {allowExperimental: true}],
 	},
 	overrides: [
