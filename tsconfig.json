@@ -4,6 +4,7 @@
 		// See <https://github.com/microsoft/TypeScript/issues/50544>. This does not
 		// seem solved with 4.8.3.
 		"forceConsistentCasingInFileNames": false,
+		"rootDir": ".",
 	},
 	"include": [
 		"test",

@@ -15,7 +15,7 @@ export const serial = available(fileURLToPath(import.meta.url)) ? ava.serial : a
 export const withFixture = fixture => async (t, task) => {
 	let completedTask = false;
 	await temporaryDirectoryTask(async dir => {
-		await fs.cp(cwd(fixture), dir, {recursive: true});
+		await fs.cp(cwd(fixture), dir, {recursive: true}); // eslint-disable-line n/no-unsupported-features/node-builtins
 
 		async function * run(args = [], options = {}) {
 			yield * exec(['--watch', ...args], {...options, cwd: dir, env: {AVA_FORCE_CI: 'not-ci', ...options.env}});

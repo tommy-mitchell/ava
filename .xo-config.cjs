@@ -30,6 +30,8 @@ module.exports = {
 		'unicorn/require-post-message-target-origin': 'off',
 		'unicorn/prefer-event-target': 'off',
 		'unicorn/prevent-abbreviations': 'off',
+		'promise/prefer-await-to-then': 'off',
+		'n/no-unsupported-features/node-builtins': ['error', {allowExperimental: true}],
 	},
 	overrides: [
 		{
@@ -44,6 +46,7 @@ module.exports = {
 				'ava/no-ignored-test-files': 'off',
 				'ava/no-only-test': 'off',
 				'unicorn/prefer-module': 'off',
+				'unicorn/no-anonymous-default-export': 'off',
 			},
 		},
 		{
@@ -53,6 +56,8 @@ module.exports = {
 			],
 			rules: {
 				'unicorn/no-empty-file': 'off',
+				'unicorn/no-anonymous-default-export': 'off',
+				'unicorn/import-style': 'off',
 			},
 		},
 		{
