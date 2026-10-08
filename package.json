@@ -111,7 +111,6 @@
 		"slash": "^5.1.0",
 		"stack-utils": "^2.0.6",
 		"supertap": "^3.0.1",
-		"temp-dir": "^3.0.0",
 		"write-file-atomic": "^7.0.1",
 		"yargs": "^18.0.0"
 	},
