@@ -30,8 +30,8 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version: ${{ matrix.node-version }}
-          cache: npm
-      - run: npm install --no-audit
+          cache: pnpm
+      - run: pnpm install
       - run: ./scripts/ci.sh
         shell: bash
       - uses: codecov/codecov-action@v7
@@ -52,31 +52,31 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version-file: package.json
-          cache: npm
-      - run: npm install --no-audit
-      - run: npm i typescript@${TS_VERSION}
+          cache: pnpm
+      - run: pnpm install
+      - run: pnpm add typescript@${TS_VERSION}
         env:
           TS_VERSION: ${{ matrix.ts-version }}
       - run: ./node_modules/typescript/bin/tsc --version
       - run: ./node_modules/typescript/bin/tsc --noEmit
 
   lockfile_churn:
-    name: Test package-lock for unexpected modifications
+    name: Test lockfile for unexpected modifications
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
         with:
           node-version-file: package.json
-          cache: npm
-      - run: npm install --no-audit
-      - name: Test package-lock for unexpected modifications
+          cache: pnpm
+      - run: pnpm install
+      - name: Test lockfile for unexpected modifications
         run: |
-          npm -v
-          checksum=$(sha512sum package-lock.json)
-          npm install --package-lock-only --no-audit
+          pnpm -v
+          checksum=$(sha512sum pnpm-lock.yaml)
+          pnpm install --lockfile-only --no-audit
           if ! echo ${checksum} | sha512sum --quiet -c -; then
-            echo "package-lock.json was modified unexpectedly. Please rebuild it using npm@$(npm -v) and commit the changes."
+            echo "pnpm-lock.yaml was modified unexpectedly. Please rebuild it using pnpm@$(pnpm -v) and commit the changes."
             exit 1
           fi
 
@@ -88,7 +88,7 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version-file: package.json
-      - run: npm install --no-package-lock --no-audit
+      - run: pnpm install --no-lockfile
       - run: ./scripts/ci.sh
         shell: bash
 
@@ -100,6 +100,6 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version-file: package.json
-          cache: npm
-      - run: npm install --no-audit
+          cache: pnpm
+      - run: pnpm install
       - run: npx xo
